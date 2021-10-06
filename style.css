@@ -1,80 +1,17 @@
-*{
-    font-family: Verdana;
-    /* background-color: black; */
-    color: white;
-    margin: 1vw;
-    box-sizing: border-box;
-    padding: 1vw;
-}
-
-.padre{
-    background-color: black;
+.container{
+    background-color: salmon;
+    padding: 10px;
     display: flex;
-    /*
+    align-content: center;
+    flex-wrap: wrap;
     flex-direction: column;
-    flex-wrap: nowrap;
-    */
-
-    /* Esta linea resume las 2 anteriores */
-    flex-flow: column nowrap;
 }
-
 .header{
-    background-color: rgb(110, 27, 98);
-    color: white;
-    display: flex;
-    flex-flow: column nowrap;
+    text-align: center;
 }
-.menu{
-    background-color: cornflowerblue;
-    display: flex;
-    flex-flow: row nowrap;
-    height: 10vw;
+.contenido{
+    text-align: center;
 }
-.logo{
-    background-color: coral;
-    height: 5vw;
-}
-.nav{
-    background-color: coral;
-    height: 5vw;
-}
-.social{
-    background-color: coral;
-    height: 5vw;
-}
-.texto-principal{
-    background-color: orange;
-}
-.h1{
-    background-color: lightseagreen;
-}
-
-
-.section{
-    background-color: peru;
-}
-.articulos{
-    background-color: purple;
-}
-.article{
-    background-color: darkblue;
-}
-.navegacion{
-    background-color: lightskyblue;
-}
-.aside{
-    background-color: pink;
-}
-.publicidad{
-    background-color: green;
-}
-
-
 .footer{
-    background-color: #303030;
-    color: white;
-}
-.pie{
-    background-color: lime;
+    text-align: center;
 }

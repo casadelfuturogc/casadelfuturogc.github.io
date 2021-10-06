@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+		<title>IoT Light Controller</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="script.js"></script>
+
+	</head>
+	<body>
+
+		<div>
+            <h1>Control Luz<br>HTML - CSS - JS</h1>
+			<button type="button" id="light-on" class="buttonON" onclick=encenderON() >Encender</button>
+			<button type="button" id="light-off" class="buttonOFF" onclick=apagarOFF()>Apagar</button><br>
+		</div>
+		<br>
+		<img id="LightImage" src="https://i.ibb.co/YPfdrLw/apagado-foco.png">
+		<div>
+			<p style="color:#2c3e50;font-weight: bold;font-size: 24px;">La luz está: <span id="LIGHTState">...</span></p>		
+		</div>
+
+	</body>
+</html>
