@@ -1,17 +1,47 @@
+*{
+    margin: 0px;
+}
+
+body{
+    background-color: black;
+}
 .container{
-    background-color: salmon;
-    padding: 10px;
+    background-color: gainsboro;
+    /* padding: 10px; */
     display: flex;
     align-content: center;
     flex-wrap: wrap;
-    flex-direction: column;
 }
-.header{
-    text-align: center;
-}
-.contenido{
-    text-align: center;
-}
-.footer{
-    text-align: center;
-}
+    .header{
+        width: 100%;
+        background-color: #6e1b62;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+        .logo{
+            /* flex: 1 1 auto; */
+            background-color: #6e1b62;
+        }
+            .logocdf{
+                padding: 2vw;
+                fill: white;
+                width: 15vw;
+            }
+        .nav{
+            flex: 1 1 auto;
+        }
+        .social{
+            /* flex: 1 1 auto; */
+            background-color: #6e1b62;
+        }
+
+    .contenido{
+        text-align: center;
+    }
+    .footer{
+        width: 100%;
+        text-align: center;
+        background-color: #1e1e1e;
+    }
