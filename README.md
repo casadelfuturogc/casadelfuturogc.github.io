@@ -1,7 +1,7 @@
 # Casa del Futuro Godoy Cruz
 Dominio: [casadelfuturogc.github.io](https://casadelfuturogc.github.io/)
 
-También se puede acceder directamente desde -> [Página Web Casa del Futuro](https://casadelfuturogc.github.io/)
+Se puede acceder al sitio web desde -> [Página Web Casa del Futuro](https://casadelfuturogc.netlify.app/)
 
 ## Grupos
 * Equipo 1 - Web Casa del Futuro
