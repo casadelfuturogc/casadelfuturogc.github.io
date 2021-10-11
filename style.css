@@ -1,6 +1,12 @@
+:root {
+    --violeta-gc: #6e1b62;
+}
 *{
     margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
 }
+
 
 body{
     background-color: black;
@@ -14,34 +20,104 @@ body{
 }
     .header{
         width: 100%;
-        background-color: #6e1b62;
+        background-color: var(--violeta-gc);
         text-align: center;
         display: flex;
         justify-content: space-between;
         
     }
-        .logo{
-            /* flex: 1 1 auto; */
-            background-color: #6e1b62;
+        .logocdf{
+            padding: 1vw;
+            margin-left: 1vw;
+            fill: white;
+            width: 15vw;
         }
-            .logocdf{
-                padding: 2vw;
-                fill: white;
-                width: 15vw;
-            }
         .nav{
+            display: flex;
             flex: 1 1 auto;
+            justify-content: center;
         }
+            .item{
+                /* flex: 1 1 auto; */
+                /* background-color: purple; */
+                font-weight: normal;
+                font-size: 1.5vw;
+                color: white;
+
+                margin: 0.5vw 0.5vw;
+                display: flex;
+                align-items: center;
+                padding: 1vw 1vw;
+            }
+
         .social{
             /* flex: 1 1 auto; */
-            background-color: #6e1b62;
+            /* background-color: purple; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* margin-right: 3vw; */
+            width: 15vw;
+            font-size: 1.5vw;
         }
+            .aheader{
+                color: white;
+                text-decoration: none;
+                display: flex;
+                flex-direction: column;
+            }
+                .redsocial{
+                    color: white;
+                    margin: 0.5vw;
+                    /* width: 3vw; */
+                }
 
     .contenido{
-        text-align: center;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+
     }
+        .centrar{
+            width: 90vw;
+            display: flex;
+            justify-content: center;
+            /* flex: 1 1 auto; */
+        }
+            .fondo{
+                width: auto;
+                height: auto;
+            }
     .footer{
         width: 100%;
         text-align: center;
         background-color: #1e1e1e;
+        display: flex;
+        align-items: center;
     }
+        .infogc{
+            /* background-color: seagreen; */
+        }
+            .logogc{
+                /* background-color: red; */
+                /* padding: 1vw; */
+                margin-left: 3vw;
+                fill: white;
+                width: 20vw;
+            }
+            .infotext{
+                color: white;
+                text-align: center;
+            }
+                .celda{
+                    padding: 0.1vw;
+                }
+        .mapa{
+            margin: 2vw;
+            width: 25vw;
+            height: 15vw;
+        }
+        .hrfooter{
+            margin-left: 2vw;
+            height: 70%;
+        }
