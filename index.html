@@ -4,127 +4,129 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa del Futuro</title>
 
-    <!-- CSS only -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous"> -->
+    <title>Casa del Futuro GC</title>
+
     <link rel="stylesheet" href="style.css">
     
-    <!-- JavaScript Bundle with Popper -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script> -->
-
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/55ec7a78e2.js" crossorigin="anonymous"></script>
 
     <!-- Google Fonts -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   
-  </head>
+</head>
 <body>
-
-  <div class="container">
-      
-    <!-- header de la pagina -->
     <header class="header">
-      <div class="logo">
-        <img class="logocdf" src="logos/logo_cdf.svg" style="fill: white;" alt="Logo CDF">
-      </div>
-      <nav class="nav">
-        <div class="item">
-          <a class="aheader" href="#">
-            <i class="fas fa-home"></i>
-            Bienvenida
-          </a>
-        </div>
-        <div class="item">
-          <a class="aheader" href="/cursos">
-            <i class="fas fa-chalkboard-teacher"></i>
-            Cursos
-          </a>
-        </div>
-        <div class="item">
-          <a class="aheader" href="/eventos">
-            <i class="fas fa-calendar-alt"></i>
-            Eventos
-          </a>
-        </div>
-        <div class="item">
-          <a class="aheader" href="/proyectos">
-            <i class="fas fa-pencil-ruler"></i>
-            Proyectos
-          </a>
-        </div>
-        <div class="item">
-          <a class="aheader" href="/contacto">
-            <i class="fas fa-comment-alt"></i>
-            Contacto
-          </a>
-        </div>
-      </nav>
-      <div class="social">
-        <div class="redsocial">
-          <a class="aheader" href="https://www.w3schools.com/" target="_blank">
-            <i class="far fa-envelope"></i>
-          </a>
-        </div>
-        <div class="redsocial">
-          <a class="aheader" href="https://www.w3schools.com/" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-        </div>
-        <div class="redsocial">
-          <a class="aheader" href="https://www.w3schools.com/" target="_blank">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-        <div class="redsocial">
-          <a class="aheader" href="https://www.w3schools.com/" target="_blank">
-            <i class="fab fa-youtube"></i>
-          </a>
-        </div>
-      </div>
-    </header>
-      
-
-    <section class="contenido">
-      <div class="centrar">
-        <img class="fondo" src="https://adnpais.com/fotos/archivo/verano(1).jpg" alt="Casa del Futuro GC">
-      </div>
-    </section>
-
-
-    <!-- footer de la pagina -->
-    <footer class="footer">
-      
-      <div class="infogc">
         <div class="logo">
-          <img class="logogc" src="logos/logo_gc.svg" style="fill: white;" alt="Logo CDF">
+            <img src="logos/logo_cdf.svg" height="100%" alt="logo cdf">
         </div>
-        <br>
-        <div class="infotext">
-          <p><b>Municipalidad de Godoy Cruz</b></p>
-          <br>
-          <div class="tabla nopd">
-                
-            <div class="celda">
-              <i class="fa fa-map-marker" aria-hidden="true" style="padding-right: 0.3vw;"></i>
-              Rivadavia 448
+        <nav class="nav">
+            <a class="navitem actual" href="#">
+                <i class="fas fa-home"></i>
+                <p>Bienvenida</p>
+            </a>
+            <a class="navitem" href="#">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <p>Cursos</p>
+            </a>
+            <a class="navitem" href="#">
+                <i class="fas fa-calendar-alt"></i>
+                <p>Eventos</p>
+            </a>
+            <a class="navitem" href="#">
+                <i class="fas fa-tools"></i>
+                <p>Proyectos</p>
+            </a>
+            <a class="navitem" href="#">
+                <i class="fas fa-comment-alt"></i>
+                <p>Contacto</p>
+            </a>
+        </nav>
+        <div class="social">
+            <a class="socialitem" href="https://google.com" target="_blank">
+                <i class="far fa-envelope"></i>
+            </a>
+            <a class="socialitem" href="https://google.com" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a class="socialitem" href="https://google.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a class="socialitem" href="https://google.com" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="contenedor">
+
+        <section class="main">
+            <div class="textosmain">
+                <br>
+                <br>
+                <h1 class="textomain"><span>Bienvenid@s a</span> <span>Casa del Futuro Godoy Cruz</span></h1>
+                <p class="textomain">
+                    Espacio educativo, para jóvenes de 15 a 30 años, orientado a la capacitación gratuita en oficios digitales, tradicionales y para la empleabilidad.
+                </p>
+                <br>
+                <br>
             </div>
-            
-          </div>
+        </section>
+
+        <section class="cursos">
+            cursos
+        </section>
+        <section class="frasemotivacional">
+            Frase motivacional
+        </section>
+        <section class="eventos">
+            Eventos
+        </section>
+        <section class="nosotros">
+            sobre nosotros
+        </section>
+        <section class="contacto">
+            Contactanos
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="logogc">
+            <img src="logos/logo_gc.svg" height="50%" alt="logo cdf">
         </div>
-
-      </div>
-
-      <hr class="hrfooter">
-
-      <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3348.2806776022694!2d-68.82072658499457!3d-32.943598280922096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0b6d2f7e375f%3A0x819b3cf57de15f9a!2sCasa%20del%20Futuro%2C%20Godoy%20Cruz!5e0!3m2!1ses!2sar!4v1633911125950!5m2!1ses!2sar" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-      
-
+        <hr class="hrfooter" size="1" color="#686868">
+        <div class="muni">
+            <h3>Municipalidad de Godoy Cruz</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Rivadavia 448, Godoy Cruz</p>
+            <p><i class="fas fa-phone-alt"></i> 0800-800-6864</p>
+        </div>
+        <hr class="hrfooter" size="1" color="#686868">
+        <div class="socialfooter">
+            <h3>Contactanos</h3>
+            <div class="iconoshoriz">
+                <a class="socialitem" href="https://google.com" target="_blank">
+                    <i class="far fa-envelope"></i>
+                </a>
+                <a class="socialitem" href="https://google.com" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a class="socialitem" href="https://google.com" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="socialitem" href="https://google.com" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+        <hr class="hrfooter" size="1" color="#686868">
+        <div class="mapa">
+            <!-- <h3>¿Dónde estamos?</h3> -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4980.710811102107!2d-68.81901943013789!3d-32.94271928080441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967e0b6d2f7e375f%3A0x819b3cf57de15f9a!2sCasa%20del%20Futuro%2C%20Godoy%20Cruz!5e0!3m2!1ses!2sar!4v1634841427235!5m2!1ses!2sar" width="200px" height="80%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </footer>
-
-  </div>
-
 </body>
 </html>
