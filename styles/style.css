@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 .col-1{width: 8.33%;}
@@ -472,6 +473,9 @@ main .cursos{
     .contacto .btnesForm #btnForm{
         margin: 0.5rem 1rem ;
     }
+    .contacto .msj #mensaje, .contacto .msj, .contacto .nombre, .contacto .email, .contacto #nombre, .contacto #email{
+        width: 100%;
+    }
 
 }
 
@@ -514,14 +518,8 @@ main .cursos{
         flex-direction: column;
         align-items: center;
     }
-    .contacto #nombre{
-        width: 20rem;
-    }
-    .contacto .msj #mensaje{
-        width: 21rem;
-    }
-    .contacto .msj{
-        padding: 0 ;
+    .contacto .msj #mensaje, .contacto .msj, .contacto .nombre, .contacto .email, .contacto #nombre, .contacto #email{
+        width: 100%;
     }
 
 }
