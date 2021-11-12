@@ -107,3 +107,52 @@ function footer(){
         </div>
     </div>`
 }
+
+function cursos( maximo){
+
+    // conectarse a bd
+
+    var cursos = document.querySelector("#insertcursos")
+    cursosBD = [
+        ["Excel",
+         "cursos/excel/excel.png",
+         "Domina una de las herramientas más importante y utilizada en el ámbito laboral. Este curso te permitirá contar con uno de los principales requisitos para las organizaciones.",
+         "Detalle 1"],
+        ["Photoshop",
+         "cursos/photoshop/photoshop.jpg",
+         "Saca el máximo potencial a tus imágenes digitales con el mejor programa. Logra que tus fotografías y diseños se luzcan para posicionarte en el mercado laboral.",
+         "Detalle 2"],
+        ["Python",
+         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBpsxvmPiFPAYF0xW0G6sLYQ4RvXSw66GbyV2uGGjnuhRqrWUUkKJ7fwLmz2pRxmTAGcY&usqp=CAU",
+         "Domina el lenguaje de programación más potente y con más crecimiento del mercado. Desarrolla programas de consola para automatizar tareas y diseñar aplicaciones.",
+         "Detalle 3"]
+    ]
+    auxiliarCursos = `
+    `;
+    if(maximo === -1){
+        maxValue = cursosBD.length;
+    }
+    else{
+        maxValue = maximo
+    }
+    for(let i=0;i<maxValue;i++){
+        console.log(`El nombre del curso ${i} es ${cursosBD[i][0]}`);
+        auxiliarCursos += `
+        <div class="card-curso">
+
+            <div class="card-img" style="background-image: url(${cursosBD[i][1]});"></div>
+            
+            <div class="card-body">
+                <h1>${cursosBD[i][0]}</h1>
+                <p>${cursosBD[i][2]}</p>
+                <p class="muted"><small>${cursosBD[i][3]}</small></p>
+                <a class="vermas" href="#">
+                    <button>Ver más</button>
+                </a>
+            </div>
+        </div>
+
+        `
+    }
+    cursos.innerHTML = auxiliarCursos;
+}
