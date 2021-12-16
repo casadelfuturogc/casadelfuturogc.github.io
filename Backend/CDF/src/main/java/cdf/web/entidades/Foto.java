@@ -2,7 +2,7 @@
 
 package cdf.web.entidades;
 
-class Foto {
+public class Foto {
 
     
     // TODO

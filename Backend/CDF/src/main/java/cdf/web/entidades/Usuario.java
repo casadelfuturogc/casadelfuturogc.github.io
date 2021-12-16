@@ -90,8 +90,5 @@ public class Usuario {
     public void setContraseñaValidacion(String contraseñaValidacion) {
         this.contraseñaValidacion = contraseñaValidacion;
     }
-    
-    
-    
 
 }

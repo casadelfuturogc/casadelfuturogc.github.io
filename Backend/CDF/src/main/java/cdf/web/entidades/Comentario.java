@@ -2,7 +2,7 @@ package cdf.web.entidades;
 
 import java.util.Date;
 
-class Comentario {
+public class Comentario {
 
     private Usuario usuario;
     private String comentario;
