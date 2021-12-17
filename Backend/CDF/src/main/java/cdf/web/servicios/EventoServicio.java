@@ -45,4 +45,9 @@ public class EventoServicio {
         return edao.save(evento);
     }
 
+    public Evento buscarEventoId(String id) {
+        return edao.findById(id).get();
+    }
+    
+
 }

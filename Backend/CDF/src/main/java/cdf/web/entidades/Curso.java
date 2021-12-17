@@ -2,23 +2,39 @@ package cdf.web.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.GenericGenerator;
 
+@Entity
 public class Curso {
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     private Foto imagen;
     private List<Foto> imagenesComplementarias;
     private String introduccion;
     private String descripcion;
+    @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+    @Temporal(TemporalType.DATE)
     private Date fechaFin;
+    @OneToMany
     private List<Comentario> comentarios;
-    private String formularioInscripcion;
+    @OneToMany
     private List<Usuario> usuariosAnotados;
 
     public Curso() {
     }
 
-    public Curso(Foto imagen, List<Foto> imagenesComplementarias, String introduccion, String descripcion, Date fechaInicio, Date fechaFin, List<Comentario> comentarios, String formularioInscripcion, List<Usuario> usuariosAnotados) {
+    public Curso(String id, Foto imagen, List<Foto> imagenesComplementarias, String introduccion, String descripcion, Date fechaInicio, Date fechaFin, List<Comentario> comentarios, List<Usuario> usuariosAnotados) {
+        this.id = id;
         this.imagen = imagen;
         this.imagenesComplementarias = imagenesComplementarias;
         this.introduccion = introduccion;
@@ -26,8 +42,15 @@ public class Curso {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.comentarios = comentarios;
-        this.formularioInscripcion = formularioInscripcion;
         this.usuariosAnotados = usuariosAnotados;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Foto getImagen() {
@@ -84,14 +107,6 @@ public class Curso {
 
     public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios;
-    }
-
-    public String getFormularioInscripcion() {
-        return formularioInscripcion;
-    }
-
-    public void setFormularioInscripcion(String formularioInscripcion) {
-        this.formularioInscripcion = formularioInscripcion;
     }
 
     public List<Usuario> getUsuariosAnotados() {

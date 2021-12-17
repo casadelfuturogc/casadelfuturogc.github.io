@@ -13,13 +13,12 @@ public class ProyectoServicio {
 
     ProyectoDAO pdao;
 
-    public Proyecto registrarProyecto(List<Comentario> comentarios, String introduccion, String descripcion, Date fechaFin, Date fechaInicio, Contacto formularioInscripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
+    public Proyecto registrarProyecto(List<Comentario> comentarios, String introduccion, String descripcion, Date fechaFin, Date fechaInicio, Foto imagen, List<Foto> imagenesComplementarias, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
         Proyecto proyecto = new Proyecto();
         proyecto.setComentarios(comentarios);
         proyecto.setDescripcion(descripcion);
         proyecto.setFechaFin(fechaFin);
         proyecto.setFechaInicio(fechaInicio);
-        proyecto.setFormularioInscripcion(formularioInscripcion);
         proyecto.setImagen(imagen);
         proyecto.setImagenesComplementarias(imagenesComplementarias);
         proyecto.setIntroduccion(introduccion);
@@ -38,19 +37,22 @@ public class ProyectoServicio {
         pdao.delete(proyecto);
     }
 
-    public Proyecto editarProyecto(String id, List<Comentario> comentarios, String introduccion, String descripcion, Date fechaFin, Date fechaInicio, Contacto formularioInscripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
+    public Proyecto editarProyecto(String id, List<Comentario> comentarios, String introduccion, String descripcion, Date fechaFin, Date fechaInicio, Foto imagen, List<Foto> imagenesComplementarias, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
         Proyecto proyecto = pdao.findById(id).get();
         proyecto.setComentarios(comentarios);
         proyecto.setDescripcion(descripcion);
         proyecto.setFechaFin(fechaFin);
         proyecto.setFechaInicio(fechaInicio);
-        proyecto.setFormularioInscripcion(formularioInscripcion);
         proyecto.setImagen(imagen);
         proyecto.setImagenesComplementarias(imagenesComplementarias);
         proyecto.setIntroduccion(introduccion);
         proyecto.setProfesores(profesores);
         proyecto.setUsuariosAnotados(usuariosAnotados);
         return pdao.save(proyecto);
+    }
+
+    public Proyecto buscarProyectoId(String id) {
+        return pdao.findById(id).get();
     }
 
 }

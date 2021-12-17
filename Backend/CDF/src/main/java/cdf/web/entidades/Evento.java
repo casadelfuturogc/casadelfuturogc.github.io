@@ -2,21 +2,37 @@ package cdf.web.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.GenericGenerator;
 
+@Entity
 public class Evento {
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private String introduccion;
     private String descripcion;
     private Foto imagen;
     private List<Foto> imagenesComplementarias;
+    @OneToMany
     private List<Comentario> comentarios;
+    @OneToMany
     private List<Usuario> usuariosAnotados;
 
     public Evento() {
     }
 
-    public Evento(Date fecha, String introduccion, String descripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Comentario> comentarios, List<Usuario> usuariosAnotados) {
+    public Evento(String id, Date fecha, String introduccion, String descripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Comentario> comentarios, List<Usuario> usuariosAnotados) {
+        this.id = id;
         this.fecha = fecha;
         this.introduccion = introduccion;
         this.descripcion = descripcion;
@@ -24,6 +40,14 @@ public class Evento {
         this.imagenesComplementarias = imagenesComplementarias;
         this.comentarios = comentarios;
         this.usuariosAnotados = usuariosAnotados;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Date getFecha() {

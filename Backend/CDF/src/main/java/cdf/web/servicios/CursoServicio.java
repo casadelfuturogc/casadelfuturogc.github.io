@@ -22,12 +22,12 @@ public class CursoServicio {
         curso.setDescripcion(descripcion);
         curso.setFechaFin(fechaFin);
         curso.setFechaInicio(fechaInicio);
-        curso.setFormularioInscripcion(formularioInscripcion);
         curso.setImagen(foto);
         curso.setImagenesComplementarias(imagenesComplementarias);
         curso.setIntroduccion(introduccion);
         curso.setUsuariosAnotados(usuariosAnotados);
-        return curso;
+        return cdao.save(curso);
+
     }
 
     public void eliminarCurso(String id) {
@@ -41,11 +41,19 @@ public class CursoServicio {
         curso.setDescripcion(descripcion);
         curso.setFechaFin(fechaFin);
         curso.setFechaInicio(fechaInicio);
-        curso.setFormularioInscripcion(formularioInscripcion);
         curso.setImagen(foto);
         curso.setImagenesComplementarias(imagenesComplementarias);
         curso.setIntroduccion(introduccion);
         curso.setUsuariosAnotados(usuariosAnotados);
+        cdao.save(curso);
         return curso;
+    }
+
+    public Curso buscarCursoId(String id) {
+        return cdao.findById(id).get();
+    }
+
+    public Curso buscarCursoNombre(String nombre) {
+        return cdao.buscarCursoNombre(nombre);
     }
 }

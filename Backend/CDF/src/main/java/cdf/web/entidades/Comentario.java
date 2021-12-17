@@ -1,20 +1,42 @@
 package cdf.web.entidades;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import org.hibernate.annotations.GenericGenerator;
 
+@Entity
 public class Comentario {
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    @ManyToOne
     private Usuario usuario;
     private String comentario;
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
 
     public Comentario() {
     }
 
-    public Comentario(Usuario usuario, String comentario, Date fecha) {
+    public Comentario(String id, Usuario usuario, String comentario, Date fecha) {
+        this.id = id;
         this.usuario = usuario;
         this.comentario = comentario;
         this.fecha = fecha;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Usuario getUsuario() {

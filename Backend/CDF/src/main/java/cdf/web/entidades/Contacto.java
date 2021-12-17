@@ -1,5 +1,8 @@
 package cdf.web.entidades;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Contacto {
 
     private String nombreCompleto;

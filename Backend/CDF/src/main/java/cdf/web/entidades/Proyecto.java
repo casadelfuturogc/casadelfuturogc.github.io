@@ -2,24 +2,42 @@ package cdf.web.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.GenericGenerator;
 
+@Entity
 public class Proyecto {
 
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
+    @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+    @Temporal(TemporalType.DATE)
     private Date fechaFin;
     private String introduccion;
     private String descripcion;
     private Foto imagen;
     private List<Foto> imagenesComplementarias;
+    @OneToMany
     private List<Comentario> comentarios;
+    @ManyToMany
     private List<Usuario> profesores;
-    private Contacto formularioInscripcion;
+    @OneToMany
     private List<Usuario> usuariosAnotados;
 
     public Proyecto() {
     }
 
-    public Proyecto(Date fechaInicio, Date fechaFin, String introduccion, String descripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Comentario> comentarios, List<Usuario> profesores, Contacto formularioInscripcion, List<Usuario> usuariosAnotados) {
+    public Proyecto(String id, Date fechaInicio, Date fechaFin, String introduccion, String descripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Comentario> comentarios, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
+        this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.introduccion = introduccion;
@@ -27,9 +45,16 @@ public class Proyecto {
         this.imagen = imagen;
         this.imagenesComplementarias = imagenesComplementarias;
         this.comentarios = comentarios;
-        this.profesores = profesores;
-        this.formularioInscripcion = formularioInscripcion;
+        this.profesores = profesores;        
         this.usuariosAnotados = usuariosAnotados;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Date getFechaInicio() {
@@ -94,14 +119,6 @@ public class Proyecto {
 
     public void setProfesores(List<Usuario> profesores) {
         this.profesores = profesores;
-    }
-
-    public Contacto getFormularioInscripcion() {
-        return formularioInscripcion;
-    }
-
-    public void setFormularioInscripcion(Contacto formularioInscripcion) {
-        this.formularioInscripcion = formularioInscripcion;
     }
 
     public List<Usuario> getUsuariosAnotados() {
