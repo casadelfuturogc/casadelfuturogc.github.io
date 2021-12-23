@@ -6,6 +6,7 @@ import cdf.web.entidades.Foto;
 import cdf.web.entidades.Usuario;
 import cdf.web.servicios.EventoServicio;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/eventos")
 @Controller
@@ -31,14 +33,31 @@ public class EventoController {
     }
 
     @GetMapping("/{nombre}")
-    public String evento(@PathVariable String id, ModelMap modelo) {
-        Evento evento = es.buscarEventoId(id);
+    public String evento(@PathVariable String nombre, String comentario, ModelMap modelo) {
+        Evento evento = es.buscarEventoNombre(nombre);
+
+        if (comentario != null) {
+            Comentario comentarioPublicado = new Comentario();
+            comentarioPublicado.setComentario(comentario);
+            comentarioPublicado.setFecha(new Date());
+            comentarioPublicado.setUsuario(null);
+            es.agregarComentario(evento.getId(), comentarioPublicado);
+            List<Comentario> comentarios = evento.getComentarios();
+            modelo.put("comentarios", comentarios);
+            modelo.put("evento", evento);
+            return "redirect:/eventos/{nombre}";
+
+        }
+
+        comentario = null;
+        List<Comentario> comentarios = evento.getComentarios();
+        modelo.put("comentarios", comentarios);
         modelo.put("evento", evento);
         return "evento.html";
     }
 
     @GetMapping("/editar-evento")
-    public String editarEvento(@RequestParam String id, ModelMap modelo, String accion) {
+    public String editarEvento(@RequestParam(required = false) String id, ModelMap modelo, String accion) {
         if (accion == null) {
             accion = "Crear";
         }
@@ -54,17 +73,17 @@ public class EventoController {
     }
 
     @PostMapping("/actualizar-evento")
-    public String actualizarEvento(String id, String nombre, List<Comentario> comentarios, String fecha, Foto imagen, List<Foto> imagenesComplementarias, List<Usuario> usuariosAnotados) {
-        Evento evento = es.buscarEventoId(id);
+    public String actualizarEvento(ModelMap modelo, @RequestParam(required = false) String id, @RequestParam(required = false) String nombre, @RequestParam(required = false) MultipartFile archivo, @RequestParam(required = false) List<MultipartFile> archivos, @RequestParam(required = false) List<Comentario> comentarios, @RequestParam(required = false) String descripcion, @RequestParam(required = false) String introduccion, @RequestParam(required = false) List<Usuario> usuariosAnotados, @RequestParam(required = false) String fecha) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             if (id == null) {
-                es.registrarEvento(comentarios, fecha, nombre, usuariosAnotados, imagenesComplementarias, imagen, format.parse(fecha));
+                es.registrarEvento(nombre, archivo, archivos, comentarios, descripcion, introduccion, usuariosAnotados, format.parse(fecha));
             } else {
-                es.editarEvento(id, comentarios, fecha, nombre, usuariosAnotados, imagenesComplementarias, imagen, format.parse(fecha));
+                es.editarEvento(nombre, archivo, archivos, id, comentarios, descripcion, introduccion, usuariosAnotados, format.parse(fecha));
             }
-            return "redirect:/";
+            return "redirect:/eventos";
         } catch (Exception e) {
+            modelo.put("error", e.getMessage());
             return "editarevento.html";
         }
     }
@@ -72,7 +91,7 @@ public class EventoController {
     @PostMapping("/eliminar-evento")
     public String eliminarEvento(String id) {
         es.eliminarEvento(id);
-        return "redirect:/";
+        return "redirect:/eventos";
     }
 
 }

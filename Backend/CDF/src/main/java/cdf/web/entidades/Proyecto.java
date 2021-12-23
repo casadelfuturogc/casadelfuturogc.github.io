@@ -2,11 +2,13 @@ package cdf.web.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,29 +26,41 @@ public class Proyecto {
     private Date fechaFin;
     private String introduccion;
     private String descripcion;
+    private String nombre;
+    @OneToOne(cascade = CascadeType.ALL)
     private Foto imagen;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Foto> imagenesComplementarias;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Usuario> profesores;
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Usuario> usuariosAnotados;
 
     public Proyecto() {
     }
 
-    public Proyecto(String id, Date fechaInicio, Date fechaFin, String introduccion, String descripcion, Foto imagen, List<Foto> imagenesComplementarias, List<Comentario> comentarios, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
+    public Proyecto(String id, Date fechaInicio, Date fechaFin, String introduccion, String descripcion, String nombre, Foto imagen, List<Foto> imagenesComplementarias, List<Comentario> comentarios, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.introduccion = introduccion;
         this.descripcion = descripcion;
+        this.nombre = nombre;
         this.imagen = imagen;
         this.imagenesComplementarias = imagenesComplementarias;
         this.comentarios = comentarios;
-        this.profesores = profesores;        
+        this.profesores = profesores;
         this.usuariosAnotados = usuariosAnotados;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getId() {

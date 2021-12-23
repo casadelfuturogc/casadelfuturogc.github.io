@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Casa del Futuro GC</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/55ec7a78e2.js" crossorigin="anonymous"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- My script for header and footer -->
+    <script th:src="@{/js/headerfooter.js}"></script>
+
+</head>
+
+<body>
+    <header class="header" id="insertheader">
+    </header>
+    <script>
+        header(2);
+    </script>
+
+    <main class="contenedor">
+
+        <section class="eventos">
+            <article class="title invert">
+                <i class="fas fa-calendar-alt fa-lg"></i>
+                <h1>Eventos</h1>
+                <i class="fas fa-calendar-alt fa-lg"></i>
+            </article>
+
+            <br>
+
+            <article class="cards-eventos" id="inserteventos">
+                <div>
+                    <h2 th:text="${evento.nombre}"></h2>
+                    <img th:src="${'/foto/evento?id=' + evento.id}"
+                        style="margin: auto;max-width: 40rem;max-height:40rem;" alt="">
+                    <br>
+                    <small th:text="${evento.fecha}"></small>
+
+
+                    <p th:text="${evento.introduccion}"></p>
+                    <p th:text="${evento.descripcion}"></p>
+
+
+                    <div>
+                        <h2>Comentarios: </h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <form class="formulario">
+                                        Escribe un comentario:
+                                        <br>
+                                        <textarea class="entry" notrequired style="resize: none;" name="comentario"
+                                            id="comentario" cols="30" rows="10"></textarea>
+                                        <br>
+                                        <button class="boton-form enviar" formmethod="get"
+                                            th:formaction="@{/eventos/{nombre}(nombre= ${evento.nombre})}"
+                                            type="submit">Enviar
+                                            comentario</button>
+                                    </form>
+                                </tr>
+                                <tr th:each="comentario: ${comentarios}">
+                                    <td>
+                                        <p th:text="${comentario.usuario?.nombre}"></p>
+                                        <p th:text="${comentario.fecha}"></p>
+                                    </td>
+                                    <td th:text="${comentario.comentario}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+            <!-- <script>
+                eventos(-1);
+            </script> -->
+
+            <!-- <div class="btn first">
+                Más eventos
+            </div> -->
+
+        </section>
+
+        <br><br><br>
+
+        <section class="nosotros">
+            <article class="card-nosotros">
+
+                <div class="body-nosotros">
+                    <div class="titulo-nosotros">
+                        <h1>Un poco de nosotros</h1>
+                    </div>
+                    <div class="contenido-nosotros">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat, earum. Optio qui dolorum
+                        voluptas nulla at illo! Mollitia quas possimus, nam consequatur expedita eaque, iusto provident
+                        corrupti laborum cumque ducimus.
+                    </div>
+                    <a href="#" class="boton-nosotros" style="text-decoration: none; width: auto;">
+                        <span class="btn second">
+                            Conoce en que estamos trabajando
+                        </span>
+                    </a>
+                </div>
+
+                <div class="imagen-nosotros">
+                    <img th:src="@{/imgs/casa-del-futuro-7-web.png}" alt="imagen casa del futuro">
+                </div>
+
+            </article>
+        </section>
+
+        <br><br>
+
+        <section class="contactoform">
+            <form class="formulario">
+                <h2 class="titulo-form">
+                    Contactanos
+                </h2>
+                <!-- <div class="datos-form">
+                </div> -->
+                <div class="nombre-form">
+                    <label for="nombre" id="nombre">Nombre y Apellido</label>
+                    <input class="entry" type="fullname" name="fullname" id="nombre">
+                </div>
+                <div class="email-form">
+                    <label for="email" id="email">Email</label>
+                    <input class="entry" type="email" name="email" id="email">
+                </div>
+                <!-- <div class="cuerpo-form">
+                </div> -->
+                <div class="mensaje-form">
+                    <label for="mensaje">Mensaje o Consulta</label>
+                    <textarea class="entry" name="mensaje" maxlength="200" minlength="20" id="mensaje" cols="30"
+                        rows="10"></textarea>
+                </div>
+                <div class="botones-form">
+                    <button class="boton-form" type="reset">Limpiar</button>
+                    <button class="boton-form enviar" type="submit">Enviar</button>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="insertfooter">
+    </footer>
+    <script>
+        footer();
+    </script>
+
+    <script>
+        function preview(event) {
+            var input = event.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function () {
+                var result = reader.result;
+                var img = document.getElementById("img");
+                img.src = result;
+            };
+            reader.readAsDataURL(input);
+
+        }
+    </script>
+
+    <!-- <script>
+        const inpFile = document.getElementById("inpFile");
+        const previewContainer = document.getElementById("imagePreview");
+        const previewImage = previewContainer.querySelector(".image-preview__image");
+        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+
+        inpFile.addEventListener("change", function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                previewDefaultText.setAttribute("display", "none");
+                previewImage.setAttribute("display", "block");
+
+                reader.addEventListener("load", function () {
+                    previewImage.setAttribute("src", this.result)
+                });
+                reader.readAsDataURL(file);
+            }
+
+        });
+
+    </script> -->
+
+</body>
+
+</html>

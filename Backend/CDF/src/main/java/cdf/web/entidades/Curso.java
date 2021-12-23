@@ -1,48 +1,63 @@
 package cdf.web.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Curso {
+public class Curso implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    @OneToOne
     private Foto imagen;
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Foto> imagenesComplementarias;
-    private String introduccion;
+    private String nombre;
+    private String introduccion;    
     private String descripcion;
     @Temporal(TemporalType.DATE)
     private Date fechaInicio;
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Comentario> comentarios;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Usuario> usuariosAnotados;
 
     public Curso() {
     }
 
-    public Curso(String id, Foto imagen, List<Foto> imagenesComplementarias, String introduccion, String descripcion, Date fechaInicio, Date fechaFin, List<Comentario> comentarios, List<Usuario> usuariosAnotados) {
+    public Curso(String id, Foto imagen, List<Foto> imagenesComplementarias, String nombre, String introduccion, String descripcion, Date fechaInicio, Date fechaFin, List<Comentario> comentarios, List<Usuario> usuariosAnotados) {
         this.id = id;
         this.imagen = imagen;
         this.imagenesComplementarias = imagenesComplementarias;
+        this.nombre = nombre;
         this.introduccion = introduccion;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.comentarios = comentarios;
         this.usuariosAnotados = usuariosAnotados;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getId() {

@@ -6,6 +6,7 @@ import cdf.web.entidades.Proyecto;
 import cdf.web.entidades.Usuario;
 import cdf.web.servicios.ProyectoServicio;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/proyectos")
 @Controller
@@ -31,14 +33,32 @@ public class ProyectoController {
     }
 
     @GetMapping("/{nombre}")
-    public String proyecto(@PathVariable String id, ModelMap modelo) {
-        Proyecto proyecto = ps.buscarProyectoId(id);
+    public String proyecto(@PathVariable String nombre, ModelMap modelo, String comentario) {
+        Proyecto proyecto = ps.buscarProyectoNombre(nombre);
+
+        if (comentario != null) {
+            Comentario comentarioPublicado = new Comentario();
+            comentarioPublicado.setComentario(comentario);
+            comentarioPublicado.setFecha(new Date());
+            comentarioPublicado.setUsuario(null);
+            ps.agregarComentario(proyecto.getId(), comentarioPublicado);
+            List<Comentario> comentarios = proyecto.getComentarios();
+            modelo.put("comentarios", comentarios);
+            modelo.put("proyecto", proyecto);
+            return "redirect:/proyectos/{nombre}";
+
+        }
+
+        comentario = null;
+        List<Comentario> comentarios = proyecto.getComentarios();
+        modelo.put("comentarios", comentarios);
+
         modelo.put("proyecto", proyecto);
         return "proyecto.html";
     }
 
     @GetMapping("/editar-proyecto")
-    public String editarProyecto(@RequestParam String id, ModelMap modelo, String accion) {
+    public String editarProyecto(@RequestParam(required = false) String id, ModelMap modelo, String accion) {
         if (accion == null) {
             accion = "Crear";
         }
@@ -54,16 +74,16 @@ public class ProyectoController {
     }
 
     @PostMapping("/actualizar-proyecto")
-    public String actualizarProyecto(String id, List<Comentario> comentarios, String introduccion, String descripcion, String fechaFin, String fechaInicio, Foto imagen, List<Foto> imagenesComplementarias, List<Usuario> profesores, List<Usuario> usuariosAnotados) {
-        Proyecto proyecto = ps.buscarProyectoId(id);
+    public String actualizarProyecto(@RequestParam(required = false) String nombre, @RequestParam(required = false) MultipartFile archivo, @RequestParam(required = false) List<MultipartFile> archivos, @RequestParam(required = false) String id, @RequestParam(required = false) List<Comentario> comentarios, @RequestParam(required = false) String introduccion, @RequestParam(required = false) String descripcion, @RequestParam(required = false) String fechaFin, @RequestParam(required = false) String fechaInicio, @RequestParam(required = false) List<Usuario> profesores, @RequestParam(required = false) List<Usuario> usuariosAnotados) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println("HASTA ACA LLEGO");
         try {
             if (id == null) {
-                ps.registrarProyecto(comentarios, introduccion, descripcion, format.parse(fechaFin), format.parse(fechaInicio), imagen, imagenesComplementarias, profesores, usuariosAnotados);
+                ps.registrarProyecto(nombre, archivo, archivos, comentarios, introduccion, descripcion, format.parse(fechaFin), format.parse(fechaInicio), profesores, usuariosAnotados);
             } else {
-                ps.editarProyecto(id, comentarios, introduccion, descripcion, format.parse(fechaFin), format.parse(fechaInicio), imagen, imagenesComplementarias, profesores, usuariosAnotados);
+                ps.editarProyecto(nombre, archivo, archivos, id, comentarios, introduccion, descripcion, format.parse(fechaFin), format.parse(fechaInicio), profesores, usuariosAnotados);
             }
-            return "redirect:/";
+            return "redirect:/proyectos";
         } catch (Exception e) {
             return "editarproyecto.html";
         }
@@ -72,7 +92,7 @@ public class ProyectoController {
     @PostMapping("/eliminar-proyecto")
     public String eliminarProyecto(String id) {
         ps.eliminarProyecto(id);
-        return "redirect:/";
+        return "redirect:/proyectos";
     }
 
 }

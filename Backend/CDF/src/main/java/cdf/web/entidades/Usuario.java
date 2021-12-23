@@ -1,22 +1,19 @@
 package cdf.web.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
     private String documento;
     private String nombre;
     private String apellido;
@@ -24,32 +21,35 @@ public class Usuario {
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
     private String telefono;
-    private String contraseña;
-    private String contraseñaValidacion;
+    private String clave;
+    @OneToOne
+    private Foto imagen;
+    private String claveValidacion;
     @ManyToMany(mappedBy = "profesores")
     private List<Proyecto> proyectos;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String documento, String nombre, String apellido, String email, Date fechaNacimiento, String telefono, String contraseña, String contraseñaValidacion) {
-        this.id = id;
+    public Usuario(String documento, String nombre, String apellido, String email, Date fechaNacimiento, String telefono, String clave, Foto imagen, String claveValidacion, List<Proyecto> proyectos) {
         this.documento = documento;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
-        this.contraseña = contraseña;
-        this.contraseñaValidacion = contraseñaValidacion;
+        this.clave = clave;
+        this.imagen = imagen;
+        this.claveValidacion = claveValidacion;
+        this.proyectos = proyectos;
     }
 
-    public String getId() {
-        return id;
+    public Foto getImagen() {
+        return imagen;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setImagen(Foto imagen) {
+        this.imagen = imagen;
     }
 
     public String getDocumento() {
@@ -100,20 +100,28 @@ public class Usuario {
         this.telefono = telefono;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
-    public String getContraseñaValidacion() {
-        return contraseñaValidacion;
+    public String getClaveValidacion() {
+        return claveValidacion;
     }
 
-    public void setContraseñaValidacion(String contraseñaValidacion) {
-        this.contraseñaValidacion = contraseñaValidacion;
+    public void setClaveValidacion(String claveValidacion) {
+        this.claveValidacion = claveValidacion;
+    }
+
+    public List<Proyecto> getProyectos() {
+        return proyectos;
+    }
+
+    public void setProyectos(List<Proyecto> proyectos) {
+        this.proyectos = proyectos;
     }
 
 }
